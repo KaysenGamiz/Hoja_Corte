@@ -1,0 +1,15 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 750px;
+}
+
+.fecha-hora {
+    display: flex;
+    justify-content: right;
+    max-width: 750px;
+}
