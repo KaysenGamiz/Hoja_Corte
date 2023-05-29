@@ -36,6 +36,7 @@ function handleEnterKey(event, nextIndex) {
     if (nextIndex !== null) {
       var nextInput = document.getElementsByName('fname' + nextIndex)[0];
       nextInput.focus();
+      calculateTotal();
     }
   }
 }
@@ -60,4 +61,13 @@ function updateMonedas(input) {
   var amountSpan = document.getElementById('amount7');
   amountSpan.textContent = input.value;
   efectivo[6] = input.value === "" ? null : parseFloat(input.value);  // Se guarda el valor de las monedas en el arreglo
+}
+
+function calculateTotal() {
+  var total = efectivo.reduce(function(sum, value) {
+    return sum + (value || 0);
+  }, 0);
+
+  var totalAmountElement = document.getElementById('totalAmount');
+  totalAmountElement.textContent = isNaN(total) ? '___________' : total;
 }
