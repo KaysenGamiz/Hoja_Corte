@@ -71,3 +71,15 @@ function calculateTotal() {
   var totalAmountElement = document.getElementById('totalAmount');
   totalAmountElement.textContent = isNaN(total) ? '___________' : total;
 }
+
+// Update Dlls
+
+function updateDolares() {
+  var amountSpan = document.getElementById('amount8');
+  var value8 = parseFloat(document.getElementsByName('fname8')[0].value) || 0;
+  var value9 = parseFloat(document.getElementsByName('fname9')[0].value) || 0;
+  var product = value8 * value9;
+  var formattedProduct = product.toFixed(2);
+  amountSpan.textContent = isNaN(formattedProduct) ? '__________' : formattedProduct;
+}
+

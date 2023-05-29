@@ -65,12 +65,20 @@
           </li><br>
           <li class="1">
             <span style="display: inline-block; width: 90px;">7.- Monedas</span>
-            (<input placeholder="" type="text" name="fname7" autofocus oninput="updateMonedas(this)" onkeyup="handleEnterKey(event, null)" />)
+            (<input placeholder="" type="text" name="fname7" autofocus oninput="updateMonedas(this)" onkeyup="handleEnterKey(event, 8)" />)
             $ <span id="amount7" data-original-value="1">__________</span>
           </li><br>
           <li class="TotalMN">
             TOTAL DE M.N (suma total del 1 al 7): $ <span id="totalAmount">___________</span>
           </li><br>
+          <li class="Dolares">
+            <span style="display: inline-block; width: 90px;">8.- Dolares</span>
+            <input placeholder="TC" type="text" name="fname8" autofocus oninput="updateDolares()" onkeyup="handleEnterKey(event, 9)" />
+            × 
+            <input placeholder="" type="text" name="fname9" autofocus oninput="updateDolares()" onkeyup="handleEnterKey(event, null)" />
+            = $
+            <span id="amount8" data-original-value="1">__________</span>
+          </li><br>          
 
         </ol>
       </div>

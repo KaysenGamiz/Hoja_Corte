@@ -67,3 +67,11 @@ input {
     border-bottom: 2px solid #03a8f45e;
     padding-bottom: 2px;
   }
+
+.TotalMN {
+    color: red; /* Establece el color rojo para el texto fuera del span */
+}
+  
+.TotalMN span {
+    color: black; /* Establece el color negro para el texto dentro del span */
+}
