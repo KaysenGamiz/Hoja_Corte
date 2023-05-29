@@ -22,9 +22,60 @@
     </header>
 
     <div class="fecha-hora">
-        Fecha: _____________ <br>
-        Hora: ______________
+      <ol style="list-style-type:none;">
+        <li>Fecha: <span id="fecha"></span></li>
+        <li>Hora: <span id="hora"></span></li>
+      </ol>
     </div>
+
+
+    <div class="container billetes">
+      <b class="monedaF">Moneda Fraccionaria</b>
+      <div class="conteoPesos">
+        <ol style="list-style-type:none;">
+          <li class="500 break">
+            <span style="display: inline-block; width: 90px;">1.- $500</span>
+            (<input placeholder="" type="text" name="fname1" autofocus oninput="updateAmount(this, 1)" onkeyup="handleEnterKey(event, 2)" />)
+            $ <span id="amount1" data-original-value="500">__________</span>
+          </li><br><br>
+          <li class="200">
+            <span style="display: inline-block; width: 90px;">2.- $200</span>
+            (<input placeholder="" type="text" name="fname2" autofocus oninput="updateAmount(this, 2)" onkeyup="handleEnterKey(event, 3)" />)
+            $ <span id="amount2" data-original-value="200">__________</span>
+          </li><br>
+          <li class="100">
+            <span style="display: inline-block; width: 90px;">3.- $100</span>
+            (<input placeholder="" type="text" name="fname3" autofocus oninput="updateAmount(this, 3)" onkeyup="handleEnterKey(event, 4)" />)
+            $ <span id="amount3" data-original-value="100">__________</span>
+          </li><br>
+          <li class="50">
+            <span style="display: inline-block; width: 90px;">4.- $50</span>
+            (<input placeholder="" type="text" name="fname4" autofocus oninput="updateAmount(this, 4)" onkeyup="handleEnterKey(event, 5)" />)
+            $ <span id="amount4" data-original-value="50">__________</span>
+          </li><br>
+          <li class="20">
+            <span style="display: inline-block; width: 90px;">5.- $20</span>
+            (<input placeholder="" type="text" name="fname5" autofocus oninput="updateAmount(this, 5)" onkeyup="handleEnterKey(event, 6)" />)
+            $ <span id="amount5" data-original-value="20">__________</span>
+          </li><br>
+          <li class="10">
+            <span style="display: inline-block; width: 90px;">6.- $10</span>
+            (<input placeholder="" type="text" name="fname6" autofocus oninput="updateAmount(this, 6)" onkeyup="handleEnterKey(event, 7)" />)
+            $ <span id="amount6" data-original-value="10">__________</span>
+          </li><br>
+          <li class="1">
+            <span style="display: inline-block; width: 90px;">7.- Monedas</span>
+            (<input placeholder="" type="text" name="fname7" autofocus oninput="updateMonedas(this)" onkeyup="handleEnterKey(event, null)" />)
+            $ <span id="amount7" data-original-value="1">__________</span>
+          </li><br>
+          <li class="TotalMN">
+            TOTAL DE M.N (suma total del 1 al 7): $ _____________
+          </li><br>
+
+        </ol>
+      </div>
+    </div>
+      
 
 </body>
 </html>
