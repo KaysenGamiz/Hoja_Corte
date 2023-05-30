@@ -1,4 +1,6 @@
 var efectivo = [];
+var retiroEnEfectivo = 0;
+var dolares = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -79,6 +81,7 @@ function updateDolares() {
   var value8 = parseFloat(document.getElementsByName('fname8')[0].value) || 0;
   var value9 = parseFloat(document.getElementsByName('fname9')[0].value) || 0;
   var product = value8 * value9;
+  dolares = product;
   var formattedProduct = product.toFixed(2);
   amountSpan.textContent = isNaN(formattedProduct) ? '__________' : formattedProduct;
 }

@@ -75,10 +75,14 @@
             <span style="display: inline-block; width: 90px;">8.- Dolares</span>
             <input placeholder="TC" type="text" name="fname8" autofocus oninput="updateDolares()" onkeyup="handleEnterKey(event, 9)" />
             × 
-            <input placeholder="" type="text" name="fname9" autofocus oninput="updateDolares()" onkeyup="handleEnterKey(event, null)" />
-            = $
+            <input placeholder="" type="text" name="fname9" autofocus oninput="updateDolares()" onkeyup="handleEnterKey(event, 10)" />
+            $
             <span id="amount8" data-original-value="1">__________</span>
           </li><br>          
+          <li class="RetiroEfectivo">
+            <span style="display: inline-block;">9.- Retiro En Efectivo (<span style="color: red;">Retiros realizados en el sistema</span>)</span>
+            $ <input placeholder="" type="text" name="fname10" style="width: 90px;" autofocus oninput="retiroEnEfectivo = this.value" onkeyup="handleEnterKey(event, 10)" />
+          </li>
 
         </ol>
       </div>
