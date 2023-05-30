@@ -1,0 +1,26 @@
+[
+    {
+        "_fecha": "date",
+        "_hora": "dateHora",
+        "_idCorte": "id",
+        "_cajeroResponsable": "Nombre",
+        "_monedaFraccionaria": {
+            "_500": "cantidad",
+            "_200": "cantidad",
+            "_100": "cantidad",
+            "_50": "cantidad",
+            "_20": "cantidad",
+            "_10": "cantidad",
+            "_monedas": "cantidad"
+        },
+        "_dolares": ["tipo de cambio", "cantidadDeDolares"],
+        "_retiroEfectivo": "cantidad",
+        "_tarjetaCredito": "cantidad",
+        "_comprasEfectivo": [["concepto", "cantidad"], ["concepto", "cantidad"]],
+        "_gastosEfectivo": [["concepto", "cantidad"], ["concepto", "cantidad"]],
+        "_valesEmpleados": [["concepto", "cantidad"], ["concepto", "cantidad"]],
+        "_devoluciones": [["concepto", "cantidad"], ["concepto", "cantidad"]],
+        "_totalCintaAuditoria": "cantidad",
+        "_sobrante/faltante": "cantidad"
+    }
+]
