@@ -1,6 +1,7 @@
 var efectivo = [];
 var retiroEnEfectivo = 0;
 var dolares = 0;
+var tarjeta = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -86,3 +87,173 @@ function updateDolares() {
   amountSpan.textContent = isNaN(formattedProduct) ? '__________' : formattedProduct;
 }
 
+function addCompraEfectivoInput() {
+  var numericInput = document.getElementsByClassName("numeric-input")[0];
+  var currentCount = parseInt(numericInput.value);
+  var numberOfInputsToAdd = currentCount;
+
+  if (currentCount <= 1) {
+    numberOfInputsToAdd = 1;
+  }
+
+  var existingInputs = document.querySelectorAll('[name^="fname"]');
+  var lastInputIndex = existingInputs.length > 0 ? parseInt(existingInputs[existingInputs.length - 1].name.replace('fname', '')) : 13;
+
+  for (var i = 0; i < numberOfInputsToAdd; i++) {
+    var newInputContainer = document.createElement("div");
+    newInputContainer.classList.add("input-container");
+
+    var input1 = document.createElement("input");
+    input1.placeholder = "";
+    input1.type = "text";
+    input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
+    input1.style.width = "190px";
+    input1.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 2) + ")");
+
+    var dollarSign = document.createElement("span");
+    dollarSign.classList.add("dolar");
+    dollarSign.innerText = "$";
+
+    var input2 = document.createElement("input");
+    input2.placeholder = "";
+    input2.type = "text";
+    input2.name = "fname" + (lastInputIndex + (i * 2) + 2);
+    input2.style.width = "90px";
+    input2.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 3) + ")");
+
+    newInputContainer.appendChild(input1);
+    newInputContainer.appendChild(dollarSign);
+    newInputContainer.appendChild(input2);
+
+    var compraEfectivoElement = document.getElementsByClassName("ComprasEfectivo")[0];
+    compraEfectivoElement.appendChild(newInputContainer);
+  }
+
+  numericInput.value = 1;
+}
+
+function addGastosEfectivoInput() {
+  var numericInput = document.getElementsByClassName("numeric-input")[1]; // Obtener el segundo elemento numeric-input
+  var currentCount = parseInt(numericInput.value);
+  var numberOfInputsToAdd = currentCount;
+
+  if (currentCount <= 1) {
+    numberOfInputsToAdd = 1;
+  }
+
+  var existingInputs = document.querySelectorAll('[name^="fname"]');
+  var lastInputIndex = existingInputs.length > 0 ? parseInt(existingInputs[existingInputs.length - 1].name.replace('fname', '')) : 23;
+
+  for (var i = 0; i < numberOfInputsToAdd; i++) {
+    var newInputContainer = document.createElement("div");
+    newInputContainer.classList.add("input-container");
+
+    var input1 = document.createElement("input");
+    input1.placeholder = "";
+    input1.type = "text";
+    input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
+    input1.style.width = "190px";
+    input1.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 2) + ")");
+
+    var dollarSign = document.createElement("span");
+    dollarSign.classList.add("dolar");
+    dollarSign.innerText = "$";
+
+    var input2 = document.createElement("input");
+    input2.placeholder = "";
+    input2.type = "text";
+    input2.name = "fname" + (lastInputIndex + (i * 2) + 2);
+    input2.style.width = "90px";
+    input2.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 3) + ")");
+
+    newInputContainer.appendChild(input1);
+    newInputContainer.appendChild(dollarSign);
+    newInputContainer.appendChild(input2);
+
+    var gastosEfectivoElement = document.getElementsByClassName("GastosEfectivo")[0];
+    gastosEfectivoElement.appendChild(newInputContainer);
+  }
+
+  numericInput.value = 1;
+}
+
+function addValesInput() {
+  var numericInput = document.getElementsByClassName("numeric-input")[2]; // Obtener el tercer elemento numeric-input
+  var currentCount = parseInt(numericInput.value);
+  var numberOfInputsToAdd = currentCount;
+
+  if (currentCount <= 1) {
+    numberOfInputsToAdd = 1;
+  }
+
+  var existingInputs = document.querySelectorAll('[name^="fname"]');
+  var lastInputIndex = existingInputs.length > 0 ? parseInt(existingInputs[existingInputs.length - 1].name.replace('fname', '')) : 33;
+
+  for (var i = 0; i < numberOfInputsToAdd; i++) {
+    var newInputContainer = document.createElement("div");
+    newInputContainer.classList.add("input-container");
+
+    var input1 = document.createElement("input");
+    input1.placeholder = "";
+    input1.type = "text";
+    input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
+    input1.style.width = "190px";
+    input1.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 2) + ")");
+
+    var dollarSign = document.createElement("span");
+    dollarSign.classList.add("dolar");
+    dollarSign.innerText = "$";
+
+    var input2 = document.createElement("input");
+    input2.placeholder = "";
+    input2.type = "text";
+    input2.name = "fname" + (lastInputIndex + (i * 2) + 2);
+    input2.style.width = "90px";
+    input2.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 3) + ")");
+
+    newInputContainer.appendChild(input1);
+    newInputContainer.appendChild(dollarSign);
+    newInputContainer.appendChild(input2);
+
+    var valesElement = document.getElementsByClassName("Vales")[0];
+    valesElement.appendChild(newInputContainer);
+  }
+
+  numericInput.value = 1;
+}
+
+function removeGastosEfectivoInput() {
+  var gastosEfectivoElement = document.getElementsByClassName("GastosEfectivo")[0];
+  var inputContainers = gastosEfectivoElement.getElementsByClassName("input-container");
+
+  // Verificar si hay al menos un conjunto de inputs para eliminar
+  if (inputContainers.length > 1) {
+    // Eliminar el último conjunto de inputs
+    var lastInputContainer = inputContainers[inputContainers.length - 1];
+    lastInputContainer.remove();
+  }
+}
+
+function removeCompraEfectivoInput() {
+  var compraEfectivoElement = document.getElementsByClassName("ComprasEfectivo")[0];
+  var inputContainers = compraEfectivoElement.getElementsByClassName("input-container");
+
+  // Verificar si hay al menos un conjunto de inputs para eliminar
+  if (inputContainers.length > 1) {
+    // Eliminar el último conjunto de inputs
+    var lastInputContainer = inputContainers[inputContainers.length - 1];
+    lastInputContainer.remove();
+  }
+}
+
+function removeValesInput() {
+  var valesElement = document.getElementsByClassName("Vales")[0];
+  var inputContainers = valesElement.getElementsByClassName("input-container");
+
+  // Verificar si hay al menos un conjunto de inputs para eliminar
+  if (inputContainers.length > 1) {
+    // Eliminar el último conjunto de inputs
+    var lastInputContainer = inputContainers[inputContainers.length - 1];
+    lastInputContainer.remove();
+  }
+}

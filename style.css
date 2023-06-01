@@ -68,10 +68,35 @@ input {
     padding-bottom: 2px;
   }
 
-.TotalMN {
+#Totales {
     color: red; /* Establece el color rojo para el texto fuera del span */
 }
   
-.TotalMN span {
+#Totales span {
     color: black; /* Establece el color negro para el texto dentro del span */
+}
+
+.RetiroEfectivo,
+.TarjetaCredito {
+  display: flex;
+  align-items: center;
+}
+
+.numero {
+  display: inline-block;
+  width: 25px;
+}
+
+.texto {
+  display: inline-block;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.dolar {
+  margin-right: 5px;
 }
