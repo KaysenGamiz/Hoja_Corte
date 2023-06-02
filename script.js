@@ -34,15 +34,23 @@ function mostrarFechaHora() {
 
 // Event Handler
 
-function handleEnterKey(event, nextIndex) {
+function handleEnterKey(event) {
   if (event.keyCode === 13) {  // 13 es el código de la tecla Enter
-    if (nextIndex !== null) {
-      var nextInput = document.getElementsByName('fname' + nextIndex)[0];
+    var inputs = document.getElementsByClassName("input-navigation");
+    var currentIndex = Array.from(inputs).indexOf(event.target);
+    var nextIndex = currentIndex + 1;
+
+    if (nextIndex < inputs.length) {
+      var nextInput = inputs[nextIndex];
       nextInput.focus();
       calculateTotal();
+      calculateTotalCompras();
+      calculateTotalGastos();
+      calculateTotalVales();
     }
   }
 }
+
 
 // Seccion de Monedas fraccionarias.
 
@@ -87,8 +95,10 @@ function updateDolares() {
   amountSpan.textContent = isNaN(formattedProduct) ? '__________' : formattedProduct;
 }
 
-function addCompraEfectivoInput() {
-  var numericInput = document.getElementsByClassName("numeric-input")[0];
+// Inputs para concepto - cantidad
+
+function addInput(containerClassName, numericInputIndex) {
+  var numericInput = document.getElementsByClassName("numeric-input")[numericInputIndex];
   var currentCount = parseInt(numericInput.value);
   var numberOfInputsToAdd = currentCount;
 
@@ -108,7 +118,9 @@ function addCompraEfectivoInput() {
     input1.type = "text";
     input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
     input1.style.width = "190px";
-    input1.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 2) + ")");
+    input1.setAttribute("onkeyup", "handleEnterKey(event)");
+
+    input1.classList.add("input-navigation"); // Agregar la clase "input-navigation"
 
     var dollarSign = document.createElement("span");
     dollarSign.classList.add("dolar");
@@ -119,112 +131,25 @@ function addCompraEfectivoInput() {
     input2.type = "text";
     input2.name = "fname" + (lastInputIndex + (i * 2) + 2);
     input2.style.width = "90px";
-    input2.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 3) + ")");
+    input2.setAttribute("onkeyup", "handleEnterKey(event)");
+
+    input2.classList.add("input-navigation"); // Agregar la clase "input-navigation"
 
     newInputContainer.appendChild(input1);
     newInputContainer.appendChild(dollarSign);
     newInputContainer.appendChild(input2);
 
-    var compraEfectivoElement = document.getElementsByClassName("ComprasEfectivo")[0];
-    compraEfectivoElement.appendChild(newInputContainer);
+    var containerElement = document.getElementsByClassName(containerClassName)[0];
+    containerElement.appendChild(newInputContainer);
   }
 
   numericInput.value = 1;
 }
 
-function addGastosEfectivoInput() {
-  var numericInput = document.getElementsByClassName("numeric-input")[1]; // Obtener el segundo elemento numeric-input
-  var currentCount = parseInt(numericInput.value);
-  var numberOfInputsToAdd = currentCount;
 
-  if (currentCount <= 1) {
-    numberOfInputsToAdd = 1;
-  }
-
-  var existingInputs = document.querySelectorAll('[name^="fname"]');
-  var lastInputIndex = existingInputs.length > 0 ? parseInt(existingInputs[existingInputs.length - 1].name.replace('fname', '')) : 23;
-
-  for (var i = 0; i < numberOfInputsToAdd; i++) {
-    var newInputContainer = document.createElement("div");
-    newInputContainer.classList.add("input-container");
-
-    var input1 = document.createElement("input");
-    input1.placeholder = "";
-    input1.type = "text";
-    input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
-    input1.style.width = "190px";
-    input1.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 2) + ")");
-
-    var dollarSign = document.createElement("span");
-    dollarSign.classList.add("dolar");
-    dollarSign.innerText = "$";
-
-    var input2 = document.createElement("input");
-    input2.placeholder = "";
-    input2.type = "text";
-    input2.name = "fname" + (lastInputIndex + (i * 2) + 2);
-    input2.style.width = "90px";
-    input2.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 3) + ")");
-
-    newInputContainer.appendChild(input1);
-    newInputContainer.appendChild(dollarSign);
-    newInputContainer.appendChild(input2);
-
-    var gastosEfectivoElement = document.getElementsByClassName("GastosEfectivo")[0];
-    gastosEfectivoElement.appendChild(newInputContainer);
-  }
-
-  numericInput.value = 1;
-}
-
-function addValesInput() {
-  var numericInput = document.getElementsByClassName("numeric-input")[2]; // Obtener el tercer elemento numeric-input
-  var currentCount = parseInt(numericInput.value);
-  var numberOfInputsToAdd = currentCount;
-
-  if (currentCount <= 1) {
-    numberOfInputsToAdd = 1;
-  }
-
-  var existingInputs = document.querySelectorAll('[name^="fname"]');
-  var lastInputIndex = existingInputs.length > 0 ? parseInt(existingInputs[existingInputs.length - 1].name.replace('fname', '')) : 33;
-
-  for (var i = 0; i < numberOfInputsToAdd; i++) {
-    var newInputContainer = document.createElement("div");
-    newInputContainer.classList.add("input-container");
-
-    var input1 = document.createElement("input");
-    input1.placeholder = "";
-    input1.type = "text";
-    input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
-    input1.style.width = "190px";
-    input1.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 2) + ")");
-
-    var dollarSign = document.createElement("span");
-    dollarSign.classList.add("dolar");
-    dollarSign.innerText = "$";
-
-    var input2 = document.createElement("input");
-    input2.placeholder = "";
-    input2.type = "text";
-    input2.name = "fname" + (lastInputIndex + (i * 2) + 2);
-    input2.style.width = "90px";
-    input2.setAttribute("onkeydown", "handleEnterKey(event, " + (lastInputIndex + (i * 2) + 3) + ")");
-
-    newInputContainer.appendChild(input1);
-    newInputContainer.appendChild(dollarSign);
-    newInputContainer.appendChild(input2);
-
-    var valesElement = document.getElementsByClassName("Vales")[0];
-    valesElement.appendChild(newInputContainer);
-  }
-
-  numericInput.value = 1;
-}
-
-function removeGastosEfectivoInput() {
-  var gastosEfectivoElement = document.getElementsByClassName("GastosEfectivo")[0];
-  var inputContainers = gastosEfectivoElement.getElementsByClassName("input-container");
+function removeInput(containerClassName) {
+  var containerElement = document.getElementsByClassName(containerClassName)[0];
+  var inputContainers = containerElement.getElementsByClassName("input-container");
 
   // Verificar si hay al menos un conjunto de inputs para eliminar
   if (inputContainers.length > 1) {
@@ -234,26 +159,46 @@ function removeGastosEfectivoInput() {
   }
 }
 
-function removeCompraEfectivoInput() {
-  var compraEfectivoElement = document.getElementsByClassName("ComprasEfectivo")[0];
-  var inputContainers = compraEfectivoElement.getElementsByClassName("input-container");
+function calculateTotalCompras() {
+  var comprasInputs = document.querySelectorAll('.ComprasEfectivo .input-container input[name^="fname"]');
+  var totalCompras = Array.from(comprasInputs).reduce(function(sum, input, index) {
+    if (index % 2 !== 0) {
+      var value = parseFloat(input.value) || 0;
+      return sum + value;
+    }
+    return sum;
+  }, 0);
 
-  // Verificar si hay al menos un conjunto de inputs para eliminar
-  if (inputContainers.length > 1) {
-    // Eliminar el último conjunto de inputs
-    var lastInputContainer = inputContainers[inputContainers.length - 1];
-    lastInputContainer.remove();
-  }
+  var totalAmountComprasElement = document.getElementById('totalAmountCompras');
+  totalAmountComprasElement.textContent = isNaN(totalCompras) ? '___________' : totalCompras;
 }
 
-function removeValesInput() {
-  var valesElement = document.getElementsByClassName("Vales")[0];
-  var inputContainers = valesElement.getElementsByClassName("input-container");
+function calculateTotalGastos() {
+  var gastosInputs = document.querySelectorAll('.GastosEfectivo .input-container input[name^="fname"]');
+  var totalGastos = Array.from(gastosInputs).reduce(function(sum, input, index) {
+    if (index % 2 !== 0) {
+      var value = parseFloat(input.value) || 0;
+      return sum + value;
+    }
+    return sum;
+  }, 0);
 
-  // Verificar si hay al menos un conjunto de inputs para eliminar
-  if (inputContainers.length > 1) {
-    // Eliminar el último conjunto de inputs
-    var lastInputContainer = inputContainers[inputContainers.length - 1];
-    lastInputContainer.remove();
-  }
+  var totalAmountGastosElement = document.getElementById('totalAmountGastos');
+  totalAmountGastosElement.textContent = isNaN(totalGastos) ? '___________' : totalGastos;
 }
+
+function calculateTotalVales() {
+  var valesInputs = document.querySelectorAll('.Vales .input-container input[name^="fname"]');
+  var totalVales = Array.from(valesInputs).reduce(function(sum, input, index) {
+    if (index % 2 !== 0) {
+      var value = parseFloat(input.value) || 0;
+      return sum + value;
+    }
+    return sum;
+  }, 0);
+
+  var totalAmountValesElement = document.getElementById('totalAmountVales');
+  totalAmountValesElement.textContent = isNaN(totalVales) ? '___________' : totalVales;
+}
+
+
