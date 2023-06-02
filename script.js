@@ -43,11 +43,13 @@ function handleEnterKey(event) {
     if (nextIndex < inputs.length) {
       var nextInput = inputs[nextIndex];
       nextInput.focus();
-      calculateTotal();
-      calculateTotalCompras();
-      calculateTotalGastos();
-      calculateTotalVales();
     }
+
+    calculateTotal();
+    calculateTotalCompras();
+    calculateTotalGastos();
+    calculateTotalVales();
+
   }
 }
 
@@ -118,6 +120,7 @@ function addInput(containerClassName, numericInputIndex) {
     input1.type = "text";
     input1.name = "fname" + (lastInputIndex + (i * 2) + 1);
     input1.style.width = "190px";
+    input1.classList.add("input-concepto");
     input1.setAttribute("onkeyup", "handleEnterKey(event)");
 
     input1.classList.add("input-navigation"); // Agregar la clase "input-navigation"
