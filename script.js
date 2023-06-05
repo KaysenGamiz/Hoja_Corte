@@ -46,10 +46,10 @@ function handleEnterKey(event) {
     }
 
     calculateTotal();
-    calculateTotalCompras();
-    calculateTotalGastos();
-    calculateTotalVales();
-    calculateTotalDevoluciones()
+    calculateTotalByClassName('ComprasEfectivo', 'totalAmountCompras');
+    calculateTotalByClassName('GastosEfectivo', 'totalAmountGastos');
+    calculateTotalByClassName('Vales', 'totalAmountVales');
+    calculateTotalByClassName('Devoluciones', 'totalAmountDevoluciones');    
   }
 }
 
@@ -166,10 +166,11 @@ function removeInput(containerClassName) {
   }
 }
 
+// Calculate Totales
 
-function calculateTotalCompras() {
-  var comprasInputs = document.querySelectorAll('.ComprasEfectivo .input-container input[name^="fname"]');
-  var totalCompras = Array.from(comprasInputs).reduce(function(sum, input, index) {
+function calculateTotalByClassName(containerClassName, totalElementId) {
+  var inputs = document.querySelectorAll('.' + containerClassName + ' .input-container input[name^="fname"]');
+  var total = Array.from(inputs).reduce(function(sum, input, index) {
     if (index % 2 !== 0) {
       var value = parseFloat(input.value) || 0;
       return sum + value;
@@ -177,50 +178,8 @@ function calculateTotalCompras() {
     return sum;
   }, 0);
 
-  var totalAmountComprasElement = document.getElementById('totalAmountCompras');
-  totalAmountComprasElement.textContent = isNaN(totalCompras) ? '___________' : totalCompras;
-}
-
-function calculateTotalGastos() {
-  var gastosInputs = document.querySelectorAll('.GastosEfectivo .input-container input[name^="fname"]');
-  var totalGastos = Array.from(gastosInputs).reduce(function(sum, input, index) {
-    if (index % 2 !== 0) {
-      var value = parseFloat(input.value) || 0;
-      return sum + value;
-    }
-    return sum;
-  }, 0);
-
-  var totalAmountGastosElement = document.getElementById('totalAmountGastos');
-  totalAmountGastosElement.textContent = isNaN(totalGastos) ? '___________' : totalGastos;
-}
-
-function calculateTotalVales() {
-  var valesInputs = document.querySelectorAll('.Vales .input-container input[name^="fname"]');
-  var totalVales = Array.from(valesInputs).reduce(function(sum, input, index) {
-    if (index % 2 !== 0) {
-      var value = parseFloat(input.value) || 0;
-      return sum + value;
-    }
-    return sum;
-  }, 0);
-
-  var totalAmountValesElement = document.getElementById('totalAmountVales');
-  totalAmountValesElement.textContent = isNaN(totalVales) ? '___________' : totalVales;
-}
-
-function calculateTotalDevoluciones() {
-  var devolucionesInputs = document.querySelectorAll('.Devoluciones .input-container input[name^="fname"]');
-  var totalDevoluciones = 0;
-
-  for (var i = 0; i < devolucionesInputs.length; i += 2) {
-    var cantidadInput = devolucionesInputs[i + 1];
-    var value = parseFloat(cantidadInput.value) || 0;
-    totalDevoluciones += value;
-  }
-
-  var totalAmountDevolucionesElement = document.getElementById('totalAmountDevoluciones');
-  totalAmountDevolucionesElement.textContent = isNaN(totalDevoluciones) ? '___________' : totalDevoluciones;
+  var totalAmountElement = document.getElementById(totalElementId);
+  totalAmountElement.textContent = isNaN(total) ? '___________' : total;
 }
 
 function calculateTotal() {
