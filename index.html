@@ -17,7 +17,7 @@
         </div>
         <div>
             <nav>
-                <p class="nombre">Botica San Jose</p>
+                <p class="nombre">Botica San Jose <br> Independencia</p>
             </nav>
         </div>
     </header>
@@ -181,7 +181,30 @@
           </li><br>
           <li class="TotalVales" id="Totales">
             TOTAL DE VALES DE EMPLEADOS: $ <span id="totalAmountVales">___________</span>
-          </li>
+          </li><br>
+          <li class="Devoluciones">
+            <span class="numero">14.-</span>
+            <div class="texto">
+              <span class="tooltip-container">
+                <span class="tooltip-trigger">Devoluciones</span>
+                <span class="tooltip-text">(En caso de no realizarse en el sistema)</span>
+              </span>
+              <span class="add-input-button"> <input type="number" class="numeric-input" value="1" min="1"/> <button class="button-14" onclick="addInput('Devoluciones', 3);">+</button> <button class="button-14" onclick="removeInput('Devoluciones');">-</button> </span>
+            </div>
+            <div class="input-container">
+              <input placeholder="" type="text" name="fname34" style="width: 190px;" autofocus onkeydown="handleEnterKey(event)" class="input-navigation input-concepto" />
+              <span class="dolar">$</span>
+              <input placeholder="" type="text" name="fname35" style="width: 90px;" autofocus onkeydown="handleEnterKey(event)" class="input-navigation" />
+            </div>
+            <div class="input-container">
+              <input placeholder="" type="text" name="fname36" style="width: 190px;" autofocus onkeydown="handleEnterKey(event)" class="input-navigation input-concepto" />
+              <span class="dolar">$</span>
+              <input placeholder="" type="text" name="fname37" style="width: 90px;" autofocus onkeydown="handleEnterKey(event)" class="input-navigation" />
+            </div>            
+          </li><br>          
+          <li class="TotalDevoluciones" id="Totales">
+            TOTAL DEVOLUCIONES: $ <span id="totalAmountDevoluciones">___________</span>
+          </li><br>
         </ol>
         
       </div>

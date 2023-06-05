@@ -49,7 +49,7 @@ function handleEnterKey(event) {
     calculateTotalCompras();
     calculateTotalGastos();
     calculateTotalVales();
-
+    calculateTotalDevoluciones()
   }
 }
 
@@ -74,15 +74,6 @@ function updateMonedas(input) {
   var amountSpan = document.getElementById('amount7');
   amountSpan.textContent = input.value;
   efectivo[6] = input.value === "" ? null : parseFloat(input.value);  // Se guarda el valor de las monedas en el arreglo
-}
-
-function calculateTotal() {
-  var total = efectivo.reduce(function(sum, value) {
-    return sum + (value || 0);
-  }, 0);
-
-  var totalAmountElement = document.getElementById('totalAmount');
-  totalAmountElement.textContent = isNaN(total) ? '___________' : total;
 }
 
 // Update Dlls
@@ -154,13 +145,27 @@ function removeInput(containerClassName) {
   var containerElement = document.getElementsByClassName(containerClassName)[0];
   var inputContainers = containerElement.getElementsByClassName("input-container");
 
-  // Verificar si hay al menos un conjunto de inputs para eliminar
+  // Obtener el valor del input numeric-input
+  var numericInput = containerElement.getElementsByClassName("numeric-input")[0];
+  var currentCount = parseInt(numericInput.value);
+
+  // Verificar si hay más de un conjunto de inputs
   if (inputContainers.length > 1) {
-    // Eliminar el último conjunto de inputs
-    var lastInputContainer = inputContainers[inputContainers.length - 1];
-    lastInputContainer.remove();
+    // Calcular la cantidad de inputs a eliminar
+    var inputsToRemove = Math.min(currentCount, inputContainers.length - 1);
+
+    // Eliminar los inputs correspondientes
+    for (var i = 0; i < inputsToRemove; i++) {
+      var lastInputContainer = inputContainers[inputContainers.length - 1];
+      lastInputContainer.remove();
+    }
+
+    // Restar la cantidad de inputs eliminados al valor del input numeric-input, asegurándonos de que no sea menor que 1
+    numericInput.value = Math.max(currentCount - inputsToRemove);
+    numericInput.value = 1;
   }
 }
+
 
 function calculateTotalCompras() {
   var comprasInputs = document.querySelectorAll('.ComprasEfectivo .input-container input[name^="fname"]');
@@ -204,4 +209,26 @@ function calculateTotalVales() {
   totalAmountValesElement.textContent = isNaN(totalVales) ? '___________' : totalVales;
 }
 
+function calculateTotalDevoluciones() {
+  var devolucionesInputs = document.querySelectorAll('.Devoluciones .input-container input[name^="fname"]');
+  var totalDevoluciones = 0;
+
+  for (var i = 0; i < devolucionesInputs.length; i += 2) {
+    var cantidadInput = devolucionesInputs[i + 1];
+    var value = parseFloat(cantidadInput.value) || 0;
+    totalDevoluciones += value;
+  }
+
+  var totalAmountDevolucionesElement = document.getElementById('totalAmountDevoluciones');
+  totalAmountDevolucionesElement.textContent = isNaN(totalDevoluciones) ? '___________' : totalDevoluciones;
+}
+
+function calculateTotal() {
+  var total = efectivo.reduce(function(sum, value) {
+    return sum + (value || 0);
+  }, 0);
+
+  var totalAmountElement = document.getElementById('totalAmount');
+  totalAmountElement.textContent = isNaN(total) ? '___________' : total;
+}
 
