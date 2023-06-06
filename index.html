@@ -33,7 +33,7 @@
     <div class="container billetes">
       <b class="monedaF">Moneda Fraccionaria</b>
       <div class="conteoPesos">
-        <ol style="list-style-type:none;">
+        <ol>
           <li class="500 break">
             <span style="display: inline-block; width: 90px;">1.- $500</span>
             (<input placeholder="" type="text" name="fname1" autofocus oninput="updateAmount(this, 1)" onkeydown="handleEnterKey(event)" class="input-navigation" />)
@@ -205,8 +205,14 @@
           <li class="TotalDevoluciones" id="Totales">
             TOTAL DEVOLUCIONES: $ <span id="totalAmountDevoluciones">___________</span>
           </li><br>
+          <li class="SumaTotal justify-right">
+            GRAN SUMA TOTAL (SUMA DEL 1 AL 14) $ <span class="TotalFinal">_____________</span>
+          </li><br>
+          <li class="TotalSistema justify-right" >
+            TOTAL DE CINTA DE AUDITORIA $ <span class="TotalSistema">_____________</span>
+          </li>
         </ol>
-        
+
       </div>
     </div>
       

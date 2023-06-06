@@ -49,7 +49,8 @@ function handleEnterKey(event) {
     calculateTotalByClassName('ComprasEfectivo', 'totalAmountCompras');
     calculateTotalByClassName('GastosEfectivo', 'totalAmountGastos');
     calculateTotalByClassName('Vales', 'totalAmountVales');
-    calculateTotalByClassName('Devoluciones', 'totalAmountDevoluciones');    
+    calculateTotalByClassName('Devoluciones', 'totalAmountDevoluciones');   
+    calcularSumaTotal(); 
   }
 }
 
@@ -190,4 +191,20 @@ function calculateTotal() {
   var totalAmountElement = document.getElementById('totalAmount');
   totalAmountElement.textContent = isNaN(total) ? '___________' : total;
 }
+
+function calcularSumaTotal() {
+  var totalAmount = parseFloat(document.getElementById('totalAmount').textContent) || 0;
+  var totalAmountCompras = parseFloat(document.getElementById('totalAmountCompras').textContent) || 0;
+  var totalAmountGastos = parseFloat(document.getElementById('totalAmountGastos').textContent) || 0;
+  var totalAmountVales = parseFloat(document.getElementById('totalAmountVales').textContent) || 0;
+  var amount8 = parseFloat(document.getElementById('amount8').textContent) || 0;
+  var retiroEfectivoInput = parseFloat(document.querySelector('.RetiroEfectivo input').value) || 0;
+  var tarjetaCreditoInput = parseFloat(document.querySelector('.TarjetaCredito input').value) || 0;
+
+  var sumaTotal = totalAmount + totalAmountCompras + totalAmountGastos + totalAmountVales + amount8 + retiroEfectivoInput + tarjetaCreditoInput;
+
+  var totalFinalElement = document.querySelector('.SumaTotal .TotalFinal');
+  totalFinalElement.textContent = isNaN(sumaTotal) ? '_____________' : sumaTotal;
+}
+
 

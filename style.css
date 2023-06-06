@@ -5,13 +5,13 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    max-width: 750px;
+    max-width: 800px;
 }
 
 .fecha-hora {
     display: flex;
     justify-content: right;
-    max-width: 750px;
+    max-width: 790px;
 }
 
 .billetes {
@@ -130,4 +130,19 @@ input.input-concepto {
 .tooltip-container:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
+}
+
+.container.billetes .conteoPesos ol .justify-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.justify-right {
+  width: 690px;
+}
+
+
+ol {
+  list-style-type:none;
 }
