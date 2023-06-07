@@ -1,7 +1,11 @@
 var efectivo = [];
-var retiroEnEfectivo = 0;
 var dolares = 0;
+var retiroEnEfectivo = 0;
 var tarjeta = 0;
+var comprasEfectivo = {};
+var gastosEfectivo = {};
+var vales = {};
+var devolciones = {};
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -204,7 +208,31 @@ function calcularSumaTotal() {
   var sumaTotal = totalAmount + totalAmountCompras + totalAmountGastos + totalAmountVales + amount8 + retiroEfectivoInput + tarjetaCreditoInput;
 
   var totalFinalElement = document.querySelector('.SumaTotal .TotalFinal');
-  totalFinalElement.textContent = isNaN(sumaTotal) ? '_____________' : sumaTotal;
+  var underline = '_____________';
+
+  if (!isNaN(sumaTotal)) {
+    var numUnderscores = underline.match(/_/g).length;
+    var numCharsAdded = sumaTotal.toString().length;
+    var numUnderscoresBefore = Math.floor((numUnderscores - numCharsAdded) / 2);
+    var numUnderscoresAfter = numUnderscores - numCharsAdded - numUnderscoresBefore;
+    var formattedSumaTotal = underline.replace(/_/g, function(match, index) {
+      if (index < numUnderscoresBefore) {
+        return '_';
+      } else if (index < numUnderscoresBefore + numCharsAdded) {
+        var charIndex = index - numUnderscoresBefore;
+        return '<u>' + sumaTotal.toString().charAt(charIndex) + '</u>';
+      } else {
+        return '_';
+      }
+    });
+
+    totalFinalElement.innerHTML = formattedSumaTotal;
+  } else {
+    totalFinalElement.textContent = underline;
+  }
 }
+
+
+
 
 
