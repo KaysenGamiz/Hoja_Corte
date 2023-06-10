@@ -87,7 +87,7 @@
             </div>
             <div class="input-container">
               <span class="dolar">$</span>
-              <input placeholder="" type="text" name="fname10" style="width: 90px;" autofocus onkeydown="handleEnterKey(event)" class="input-navigation" />
+              <input placeholder="" type="text" name="fname10" style="width: 90px;" autofocus oninput="retiroEnEfectivo = this.value;" onkeydown="handleEnterKey(event)" class="input-navigation" />
             </div>
           </li><br>
           <li class="TarjetaCredito">
@@ -97,7 +97,7 @@
             </div>
             <div class="input-container">
               <span class="dolar">$</span>
-              <input placeholder="" type="text" name="fname11" style="width: 90px;" autofocus onkeydown="handleEnterKey(event)" class="input-navigation" />
+              <input placeholder="" type="text" name="fname11" style="width: 90px;" autofocus oninput="tarjeta = this.value;" onkeydown="handleEnterKey(event)" class="input-navigation" />
             </div>
           </li><br>
           <li class="ComprasEfectivo">
@@ -207,10 +207,11 @@
           </li><br>
           <li class="SumaTotal justify-right">
             GRAN SUMA TOTAL (SUMA DEL 1 AL 14) $ <span class="TotalFinal">_____________</span>
-          </li><br>
+          </li><br><br>
           <li class="TotalSistema justify-right" >
-            TOTAL DE CINTA DE AUDITORIA $ <span class="TotalSistema">_____________</span>
-          </li>
+            TOTAL DE CINTA DE AUDITORIA $ <span class="TotalSistema"><input placeholder="" type="text" name="fname38" style="width: 101px;" autofocus oninput="totalSistema = this.value;" onkeydown="handleEnterKey(event)" class="input-navigation"/></span>
+          </li><br>
+
         </ol>
 
       </div>

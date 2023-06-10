@@ -1,11 +1,12 @@
 var efectivo = [];
-var dolares = 0;
+var dolares = {};
 var retiroEnEfectivo = 0;
 var tarjeta = 0;
 var comprasEfectivo = {};
 var gastosEfectivo = {};
 var vales = {};
-var devolciones = {};
+var devoluciones = {};
+var totalSistema = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -54,7 +55,10 @@ function handleEnterKey(event) {
     calculateTotalByClassName('GastosEfectivo', 'totalAmountGastos');
     calculateTotalByClassName('Vales', 'totalAmountVales');
     calculateTotalByClassName('Devoluciones', 'totalAmountDevoluciones');   
-    calcularSumaTotal(); 
+    calcularSumaTotal();
+    obtenerComprasEfectivo();
+    obtenerGastosEfectivo(); 
+    obtenerVales();
   }
 }
 
@@ -88,7 +92,12 @@ function updateDolares() {
   var value8 = parseFloat(document.getElementsByName('fname8')[0].value) || 0;
   var value9 = parseFloat(document.getElementsByName('fname9')[0].value) || 0;
   var product = value8 * value9;
-  dolares = product;
+  
+  dolares = {
+    TC: value8,
+    efectivo: value9
+  };
+  
   var formattedProduct = product.toFixed(2);
   amountSpan.textContent = isNaN(formattedProduct) ? '__________' : formattedProduct;
 }
@@ -232,7 +241,68 @@ function calcularSumaTotal() {
   }
 }
 
+// Guardar Informacion en variables globales concepto - cantidad
 
+function obtenerComprasEfectivo() {
+  const comprasEfectivoItems = document.querySelectorAll('li.ComprasEfectivo');
 
+  comprasEfectivo = {}; // Reiniciar la variable global
 
+  comprasEfectivoItems.forEach((item, index) => {
+    const conceptoInputs = item.querySelectorAll('.input-container .input-concepto');
+    const cantidadInputs = item.querySelectorAll('.input-container input:not(.input-concepto)');
+
+    conceptoInputs.forEach((conceptoInput, i) => {
+      const concepto = conceptoInput.value;
+      const cantidad = cantidadInputs[i].value;
+
+      // Verificar que los campos no estén vacíos antes de almacenar en el objeto
+      if (concepto !== "" && cantidad !== "") {
+        comprasEfectivo[concepto] = cantidad;
+      }
+    });
+  });
+}
+
+function obtenerGastosEfectivo() {
+  const gastosEfectivoItems = document.querySelectorAll('li.GastosEfectivo');
+
+  gastosEfectivo = {}; // Reiniciar la variable global
+
+  gastosEfectivoItems.forEach((item, index) => {
+    const conceptoInputs = item.querySelectorAll('.input-container .input-concepto');
+    const cantidadInputs = item.querySelectorAll('.input-container input:not(.input-concepto)');
+
+    conceptoInputs.forEach((conceptoInput, i) => {
+      const concepto = conceptoInput.value;
+      const cantidad = cantidadInputs[i].value;
+
+      // Verificar que los campos no estén vacíos antes de almacenar en el objeto
+      if (concepto !== "" && cantidad !== "") {
+        gastosEfectivo[concepto] = cantidad;
+      }
+    });
+  });
+}
+
+function obtenerVales() {
+  const valesItems = document.querySelectorAll('li.Vales');
+
+  vales = {}; // Reiniciar la variable global
+
+  valesItems.forEach((item, index) => {
+    const conceptoInputs = item.querySelectorAll('.input-container .input-concepto');
+    const cantidadInputs = item.querySelectorAll('.input-container input:not(.input-concepto)');
+
+    conceptoInputs.forEach((conceptoInput, i) => {
+      const concepto = conceptoInput.value;
+      const cantidad = cantidadInputs[i].value;
+
+      // Verificar que los campos no estén vacíos antes de almacenar en el objeto
+      if (concepto !== "" && cantidad !== "") {
+        vales[concepto] = cantidad;
+      }
+    });
+  });
+}
 
