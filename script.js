@@ -7,6 +7,7 @@ var gastosEfectivo = {};
 var vales = {};
 var devoluciones = {};
 var totalSistema = 0;
+var diferencia = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -217,29 +218,20 @@ function calcularSumaTotal() {
   var sumaTotal = totalAmount + totalAmountCompras + totalAmountGastos + totalAmountVales + amount8 + retiroEfectivoInput + tarjetaCreditoInput;
 
   var totalFinalElement = document.querySelector('.SumaTotal .TotalFinal');
-  var underline = '_____________';
 
   if (!isNaN(sumaTotal)) {
-    var numUnderscores = underline.match(/_/g).length;
-    var numCharsAdded = sumaTotal.toString().length;
-    var numUnderscoresBefore = Math.floor((numUnderscores - numCharsAdded) / 2);
-    var numUnderscoresAfter = numUnderscores - numCharsAdded - numUnderscoresBefore;
-    var formattedSumaTotal = underline.replace(/_/g, function(match, index) {
-      if (index < numUnderscoresBefore) {
-        return '_';
-      } else if (index < numUnderscoresBefore + numCharsAdded) {
-        var charIndex = index - numUnderscoresBefore;
-        return '<u>' + sumaTotal.toString().charAt(charIndex) + '</u>';
-      } else {
-        return '_';
-      }
-    });
-
-    totalFinalElement.innerHTML = formattedSumaTotal;
+    var formattedSumaTotal = numberWithCommas(sumaTotal);
+    totalFinalElement.textContent = formattedSumaTotal;
   } else {
-    totalFinalElement.textContent = underline;
+    totalFinalElement.textContent = '_____________';
   }
 }
+
+// Función para formatear el número con comas cada 1000
+function numberWithCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 // Guardar Informacion en variables globales concepto - cantidad
 
@@ -304,5 +296,29 @@ function obtenerVales() {
       }
     });
   });
+}
+
+function calcularDiferencia() {
+  var totalSistema = parseFloat(document.getElementsByName("fname38")[0].value); // Obtener el valor de totalSistema y convertirlo a número
+  console.log(totalSistema);
+  
+  var sumaTotal = parseFloat(document.querySelector(".TotalFinal").innerHTML); // Obtener la suma total del span correspondiente y convertirla a número
+  console.log(sumaTotal);
+  diferencia = totalSistema - sumaTotal; // Calcular la diferencia
+  
+  // Actualizar el contenido del span correspondiente según la diferencia
+  var sobranteSpan = document.querySelector(".SobrantePlace");
+  var faltanteSpan = document.querySelector(".FaltantePlace");
+  
+  if (diferencia < 0) {
+    sobranteSpan.textContent = diferencia * -1;
+    faltanteSpan.textContent = "___________";
+  } else if (diferencia > 0) {
+    sobranteSpan.textContent = "___________";
+    faltanteSpan.textContent = Math.abs(diferencia);
+  } else {
+    sobranteSpan.textContent = "___________";
+    faltanteSpan.textContent = "0";
+  }
 }
 
