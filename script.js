@@ -60,6 +60,7 @@ function handleEnterKey(event) {
     obtenerComprasEfectivo();
     obtenerGastosEfectivo(); 
     obtenerVales();
+    obtenerDevoluciones();
   }
 }
 
@@ -298,18 +299,45 @@ function obtenerVales() {
   });
 }
 
+function obtenerDevoluciones() {
+  const devolucionesItems = document.querySelectorAll('li.Devoluciones');
+
+  devoluciones = {}; // Reiniciar la variable global
+
+  devolucionesItems.forEach((item, index) => {
+    const conceptoInputs = item.querySelectorAll('.input-container .input-concepto');
+    const cantidadInputs = item.querySelectorAll('.input-container input:not(.input-concepto)');
+
+    conceptoInputs.forEach((conceptoInput, i) => {
+      const concepto = conceptoInput.value;
+      const cantidad = cantidadInputs[i].value;
+
+      // Verificar que los campos no estén vacíos antes de almacenar en la variable global
+      if (concepto !== "" && cantidad !== "") {
+        devoluciones[concepto] = cantidad;
+      }
+    });
+  });
+}
+
 function calcularDiferencia() {
   var totalSistema = parseFloat(document.getElementsByName("fname38")[0].value); // Obtener el valor de totalSistema y convertirlo a número
   console.log(totalSistema);
-  
-  var sumaTotal = parseFloat(document.querySelector(".TotalFinal").innerHTML); // Obtener la suma total del span correspondiente y convertirla a número
+
+  var totalFinal = document.querySelector(".TotalFinal").innerHTML;
+  var totalSinComa = totalFinal.replace(",", "");
+  var sumaTotal = parseFloat(totalSinComa); // Obtener la suma total del span correspondiente y convertirla a número
   console.log(sumaTotal);
-  diferencia = totalSistema - sumaTotal; // Calcular la diferencia
-  
+
+  var totalDevoluciones = parseFloat(document.getElementById("totalAmountDevoluciones").textContent); // Obtener el valor de totalAmountDevoluciones y convertirlo a número
+  console.log(totalDevoluciones);
+
+  var diferencia = totalSistema - sumaTotal - totalDevoluciones; // Calcular la diferencia, considerando las devoluciones
+
   // Actualizar el contenido del span correspondiente según la diferencia
   var sobranteSpan = document.querySelector(".SobrantePlace");
   var faltanteSpan = document.querySelector(".FaltantePlace");
-  
+
   if (diferencia < 0) {
     sobranteSpan.textContent = diferencia * -1;
     faltanteSpan.textContent = "___________";
@@ -322,3 +350,9 @@ function calcularDiferencia() {
   }
 }
 
+function actualizarTexto(input) {
+  var texto = input.value;
+  var contenedor = input.parentElement; // Obtener el contenedor padre del campo de entrada
+  var spanTexto = contenedor.querySelector("span"); // Buscar el elemento span dentro del contenedor
+  spanTexto.textContent = texto;
+}

@@ -187,7 +187,7 @@
             <div class="texto">
               <span class="tooltip-container">
                 <span class="tooltip-trigger">Devoluciones</span>
-                <span class="tooltip-text">(En caso de no realizarse en el sistema)</span>
+                <span class="tooltip-text">(En caso de no realizarse en el sistema, se restará del total de cinta de auditoria)</span>
               </span>
               <span class="add-input-button"> <input type="number" class="numeric-input" value="1" min="1"/> <button class="button-14" onclick="addInput('Devoluciones', 3);">+</button> <button class="button-14" onclick="removeInput('Devoluciones');">-</button> </span>
             </div>
@@ -217,6 +217,16 @@
           <li class="Faltante justify-right" >
             FALTANTE: <span class="FaltantePlace" style="min-width: 88px; display: flex; justify-content: center;">___________</span>
           </li><br>
+          <li style="width: 700px; display: flex; justify-content: space-between;">
+            <div class="contenedor-input">
+                <input placeholder="RECIBIÓ" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-texto-oculto">
+                RECIBIÓ:<span id="textoRecibido"></span>
+            </div>
+            <div class="contenedor-input">
+                <input placeholder="CAJERO(A)" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-texto-oculto">
+                CAJERO(A):<span id="textoCajero"></span>
+            </div>
+          </li>
         </ol>
 
       </div>

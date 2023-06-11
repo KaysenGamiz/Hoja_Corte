@@ -146,3 +146,14 @@ input.input-concepto {
 ol {
   list-style-type:none;
 }
+
+.contenedor-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar los elementos horizontalmente */
+  text-align: center; /* Centrar el texto horizontalmente */
+}
+
+.input-texto-oculto {
+  color: white; /* Iguala el color del texto al fondo del input */
+}
