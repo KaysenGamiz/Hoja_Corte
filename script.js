@@ -8,6 +8,8 @@ var vales = {};
 var devoluciones = {};
 var totalSistema = 0;
 var diferencia = 0;
+var recibido = '';
+var cajero = '';
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -355,4 +357,9 @@ function actualizarTexto(input) {
   var contenedor = input.parentElement; // Obtener el contenedor padre del campo de entrada
   var spanTexto = contenedor.querySelector("span"); // Buscar el elemento span dentro del contenedor
   spanTexto.textContent = texto;
+  if(spanTexto.id == 'textoRecibido'){
+    recibido = texto;
+  } else {
+    cajero = texto;
+  }
 }
