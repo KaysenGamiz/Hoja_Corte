@@ -29,11 +29,10 @@ function mostrarFechaHora() {
   var anio = fechaActual.getFullYear();
   var horas = fechaActual.getHours();
   var minutos = fechaActual.getMinutes();
-  var segundos = fechaActual.getSeconds();
 
   // Formatear los componentes como cadena con dos dígitos
   var fechaFormateada = ("0" + dia).slice(-2) + "/" + ("0" + mes).slice(-2) + "/" + anio;
-  var horaFormateada = ("0" + horas).slice(-2) + ":" + ("0" + minutos).slice(-2) + ":" + ("0" + segundos).slice(-2);
+  var horaFormateada = ("0" + horas).slice(-2) + ":" + ("0" + minutos).slice(-2);
 
   // Asignar los valores formateados a los elementos span
   fechaElement.textContent = fechaFormateada;
@@ -43,12 +42,18 @@ function mostrarFechaHora() {
 // Event Handler
 
 function handleEnterKey(event) {
-  if (event.keyCode === 13) {  // 13 es el código de la tecla Enter
+  if (event.keyCode === 13 || event.keyCode === 38 || event.keyCode === 40) {  // 13 es el código de la tecla Enter, 38 es el código de la tecla "flecha arriba" y 40 es el código de la tecla "flecha abajo"
     var inputs = document.getElementsByClassName("input-navigation");
     var currentIndex = Array.from(inputs).indexOf(event.target);
-    var nextIndex = currentIndex + 1;
+    var nextIndex;
 
-    if (nextIndex < inputs.length) {
+    if (event.keyCode === 38) {  // Tecla "flecha arriba"
+      nextIndex = currentIndex - 1;
+    } else {  // Tecla "Enter" o "flecha abajo"
+      nextIndex = currentIndex + 1;
+    }
+
+    if (nextIndex >= 0 && nextIndex < inputs.length) {
       var nextInput = inputs[nextIndex];
       nextInput.focus();
     }
@@ -65,6 +70,7 @@ function handleEnterKey(event) {
     obtenerDevoluciones();
   }
 }
+
 
 
 // Seccion de Monedas fraccionarias.

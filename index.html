@@ -17,7 +17,7 @@
         </div>
         <div>
             <nav>
-                <p class="nombre">Botica San Jose <br> Independencia</p>
+                <p class="nombre">Botica San Jose <br> Independencia <br> <span class="Corte" style="color:red">CORTE: <span class="idCorte" style="color: black;">RCC5982</span></span></p>
             </nav>
         </div>
     </header>
@@ -208,9 +208,9 @@
           <li class="SumaTotal justify-right">
             GRAN SUMA TOTAL (SUMA DEL 1 AL 14) $ <span class="TotalFinal" style="padding-left: 5px;">_____________</span>
           </li><br><br>
-          <li class="TotalSistema justify-right" >
-            TOTAL DE CINTA DE AUDITORIA $ <span class="TotalSistema"><input placeholder="" type="text" name="fname38" style="width: 101px;" autofocus oninput="totalSistema = this.value;" onkeydown="handleEnterKey(event); calcularDiferencia();" class="input-navigation"/></span>
-          </li><br>
+          <li class="TotalSistema justify-right">
+            TOTAL DE CINTA DE AUDITORIA $ <span class="TotalSistema"><input placeholder="" type="text" name="fname38" style="width: 101px;" autofocus oninput="totalSistema = this.value;" onkeydown="handleEnterKey(event); calcularDiferencia();" class="input-navigation" /></span>
+          </li><br>          
           <li class="Sobrante justify-right" >
             SOBRANTE: <span class="SobrantePlace" style="min-width: 88px; display: flex; justify-content: center;">___________</span>
           </li><br>
@@ -219,12 +219,12 @@
           </li><br>
           <li style="width: 700px; display: flex; justify-content: space-between;">
             <div class="contenedor-input">
-                <input placeholder="RECIBIÓ" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-texto-oculto">
-                RECIBIÓ:<span id="textoRecibido"></span>
+              <input placeholder="RECIBIÓ" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-navigation input-texto-oculto" onkeydown="handleEnterKey(event)" />
+              RECIBIÓ:<span id="textoRecibido"></span>
             </div>
             <div class="contenedor-input">
-                <input placeholder="CAJERO(A)" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-texto-oculto">
-                CAJERO(A):<span id="textoCajero"></span>
+              <input placeholder="CAJERO(A)" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-navigation input-texto-oculto" onkeydown="handleEnterKey(event)" />
+              CAJERO(A):<span id="textoCajero"></span>
             </div>
           </li>
         </ol>
