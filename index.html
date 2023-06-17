@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="print.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -16,19 +17,14 @@
             <img src="/imgs/logo.jpg" alt="">
         </div>
         <div>
-            <nav>
-                <p class="nombre">Botica San Jose <br> Independencia <br> <span class="Corte" style="color:red">CORTE: <span class="idCorte" style="color: black;">RCC5982</span></span></p>
+            <nav class="infoText">
+                <p class="nombre">Botica San Jose <br> Independencia <br> <span class="Corte" style="color:red">CORTE: <span class="idCorte" style="color: black;">RCC5982</span></span> 
+                <br> <br> Fecha: <span id="fecha"></span> <br> Hora: <span id="hora"></span>
+                <button class="button-14 imprimir" onclick="window.print();">Imprimir</button>
+                </p> 
             </nav>
         </div>
     </header>
-
-    <div class="fecha-hora" style="min-width: 1050px; justify-content:end;">
-      <ol style="list-style-type:none;">
-        <li>Fecha: <span id="fecha"></span></li>
-        <li>Hora: <span id="hora"></span></li>
-      </ol>
-    </div>
-
 
     <div class="container billetes">
       <b class="monedaF">Moneda Fraccionaria</b>

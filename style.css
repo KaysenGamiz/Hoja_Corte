@@ -9,6 +9,10 @@ header {
     max-width: 800px;
 }
 
+.infoText {
+  font-size: 1.09em;
+}
+
 .fecha-hora {
     display: flex;
     justify-content: right;
@@ -157,4 +161,9 @@ ol {
 
 .input-texto-oculto {
   color: white; /* Iguala el color del texto al fondo del input */
+}
+
+.logo img {
+  width: 400px; /* Establece el ancho deseado */
+  height: auto; /* Ajusta automáticamente la altura proporcionalmente */
 }
