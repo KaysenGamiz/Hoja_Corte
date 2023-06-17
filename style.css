@@ -1,5 +1,6 @@
 body {
     font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
 }
 
 header {
@@ -139,7 +140,7 @@ input.input-concepto {
 }
 
 .justify-right {
-  width: 690px;
+  min-width: 950px;
 }
 
 

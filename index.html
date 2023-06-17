@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <header>
+    <header style="min-width: 1050px;">
         <div class="logo">
             <img src="/imgs/logo.jpg" alt="">
         </div>
@@ -22,7 +22,7 @@
         </div>
     </header>
 
-    <div class="fecha-hora">
+    <div class="fecha-hora" style="min-width: 1050px; justify-content:end;">
       <ol style="list-style-type:none;">
         <li>Fecha: <span id="fecha"></span></li>
         <li>Hora: <span id="hora"></span></li>
@@ -217,7 +217,7 @@
           <li class="Faltante justify-right" >
             FALTANTE: <span class="FaltantePlace" style="min-width: 88px; display: flex; justify-content: center;">___________</span>
           </li><br>
-          <li style="width: 700px; display: flex; justify-content: space-between;">
+          <li style="width: 800px; display: flex; justify-content: space-between;">
             <div class="contenedor-input">
               <input placeholder="RECIBIÓ" type="text" style="width: 300px;" oninput="actualizarTexto(this)" class="input-navigation input-texto-oculto" onkeydown="handleEnterKey(event)" />
               RECIBIÓ:<span id="textoRecibido"></span>
