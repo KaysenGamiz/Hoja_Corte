@@ -10,6 +10,7 @@ var totalSistema = 0;
 var diferencia = 0;
 var recibido = '';
 var cajero = '';
+var fecha = '', hora = '';
 
 document.addEventListener("DOMContentLoaded", function() {
   mostrarFechaHora();
@@ -34,12 +35,38 @@ function mostrarFechaHora() {
   var fechaFormateada = ("0" + dia).slice(-2) + "/" + ("0" + mes).slice(-2) + "/" + anio;
   var horaFormateada = ("0" + horas).slice(-2) + ":" + ("0" + minutos).slice(-2);
 
+  fecha = fechaFormateada;
+  hora = horaFormateada;
+
   // Asignar los valores formateados a los elementos span
   fechaElement.textContent = fechaFormateada;
   horaElement.textContent = horaFormateada;
 }
 
+// Impresion
+function imprimir(){
+  mostrarFechaHora();
+  calculateTotal();
+  calculateTotalByClassName('ComprasEfectivo', 'totalAmountCompras');
+  calculateTotalByClassName('GastosEfectivo', 'totalAmountGastos');
+  calculateTotalByClassName('Vales', 'totalAmountVales');
+  calculateTotalByClassName('Devoluciones', 'totalAmountDevoluciones');   
+  calcularSumaTotal();
+  obtenerComprasEfectivo();
+  obtenerGastosEfectivo(); 
+  obtenerVales();
+  obtenerDevoluciones();
+  window.print();
+}
+
 // Event Handler
+
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'p') {
+    imprimir();
+  }
+});
+
 
 function handleEnterKey(event) {
   if (event.keyCode === 13 || event.keyCode === 38 || event.keyCode === 40) {  // 13 es el código de la tecla Enter, 38 es el código de la tecla "flecha arriba" y 40 es el código de la tecla "flecha abajo"
@@ -367,5 +394,17 @@ function actualizarTexto(input) {
     recibido = texto;
   } else {
     cajero = texto;
+  }
+}
+
+// Validaciones
+
+function validarNumeroInput(event) {
+  var input = event.target;
+  var inputValue = input.value.trim();
+
+  if (inputValue !== "" && isNaN(inputValue)) {
+    alert("Ingresa solo números en el campo");
+    input.value = "";
   }
 }
